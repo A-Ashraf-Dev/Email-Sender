@@ -8,6 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // Please check the connection details in the appsettings.json the DB name will be EmailSender
+
+/*
+  >>>>>>>>> If this is the first time to run the APP,then before Start the App you will need to create the DB <<<<<<<<<<<<<<
+
+1) -> Run "Update-Database" on the Package Manager Console
+2) -> Run "Add-Migration <YourMigrationTitle>" on the Package Manager Console
+3) -> Run "Update-Database" on the Package Manager Console
+ */
+
 var dbConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(dbConnection));
 

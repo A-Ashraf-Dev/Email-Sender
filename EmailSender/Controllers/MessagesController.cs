@@ -19,6 +19,10 @@ namespace EmailSender.Controllers
             _appDBContext = appDBContext;
             _toastNotification = toastNotification;
         }
+        /// <summary>
+        /// This Method return single View with two sections [ Create Message & List of created Messages ]
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> CreateAndShowMessages()
         {
             var messageObj = new Message();
@@ -28,6 +32,11 @@ namespace EmailSender.Controllers
             return View(messageObj);
         }
 
+        /// <summary>
+        /// This method for creating a new message 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns> Redirect to the home page </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAndShowMessages(Message message)
@@ -43,6 +52,11 @@ namespace EmailSender.Controllers
             return RedirectToAction(nameof(CreateAndShowMessages));
         }
 
+        /// <summary>
+        /// this method used to navigate to the Send Email Form with the chosen message
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> SendEmail(int? id)
         {
             if(id == null)
@@ -174,6 +188,12 @@ namespace EmailSender.Controllers
         }
 
 
+
+        /// <summary>
+        /// This method for deleting a message 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> DeleteMessage(int? id)
         {
             if(id == null)
